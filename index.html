@@ -122,10 +122,11 @@
     integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"
     crossorigin="anonymous"></script>
   <script>
-    const audioIconWrapper = document.querySelector('.audio-icon-wrapper');
-    const song = document.querySelector('#song');
+    let audioIconWrapper = document.querySelector('.audio-icon-wrapper');
+    let audioIcon = document.querySelector('.audio-icon-wrapper i')
+    let song = document.querySelector('#song');
     let isPlaying = false;
-    
+
       simplyCountdown('.simply-countdown', {
         year: 2023, // required
         month: 11, // required
@@ -160,10 +161,17 @@
       isPlaying = true;
     }
 
-    audioIconWrapper.oneclick = function () {
+    audioIconWrapper.onclick = function () {
       if (isPlaying) {
         song.pause();
+        audioIcon.classList.remove('bi-disc');
+        audioIcon.classList.add('bi-pause-circle');
+      } else {
+        song.play();
+        audioIcon.classList.add('bi-disc');
+        audioIcon.classList.remove('bi-pause-circle');
       }
+      isPlaying = !isPlaying;
     }
 
     if (performance.navigation.type == performance.navigation.TYPE_RELOAD && document.getElementById("bukaUndangan").clicked) {
